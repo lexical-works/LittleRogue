@@ -15,14 +15,9 @@ build-type:          Simple
 cabal-version:       >=1.8
 
 executable LittleRogue
-  main-is:             src/Main.hs
-  -- other-modules:       
-  build-depends:       base ==4.6.*
-
-executable mtbTest
   hs-source-dirs:      src
   -- include-dirs:        src/
-  main-is:             MainMtb.hs
+  main-is:             src/Main.hs
   other-modules:       GameMap Console
   build-depends:       ansi-terminal  >= 0.5.0,
                        containers >=  0.4.0.0,
