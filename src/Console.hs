@@ -9,10 +9,10 @@ drawStartY = 1
 
 gameMapToList :: GameCellMap -> [(Point, Cell)]
 gameMapToList gameCellMap = [makePair (x, y) | x <- [0..(cols-1)], y <- [0..(rows-1)]]
-    where GameMap m (cols, rows) (playerx, playery) = gameCellMap
+    where GameMap m (cols, rows) = gameCellMap
           makePair p = (p, getCell $ Data.Map.lookup p m)
           getCell (Just cell) = cell
-          getCell _ = Floor
+          getCell _ = Space
 
 drawPoint :: (Point, Cell) -> IO ()
 drawPoint ((x, y), cellType) = do
@@ -26,7 +26,7 @@ drawBorder c (x, y) = do
 
 drawGameCellMap :: GameCellMap -> IO ()
 drawGameCellMap gm = 
-    let GameMap m (cols, rows) (playerx, playery) = gm
+    let GameMap m (cols, rows) = gm
         x0 = drawStartX
         y0 = drawStartY
         x1 = x0+cols+1
@@ -37,3 +37,4 @@ drawGameCellMap gm =
         mapM_ (\y_ -> drawBorder2 '-' (x0, y_) (x1, y_)) [y0..y1]
         mapM_ (drawBorder '+') [(x0,y0), (x1, y0), (x0, y1), (x1, y1)]
         mapM_ drawPoint $ gameMapToList gm
+        putStrLn ""

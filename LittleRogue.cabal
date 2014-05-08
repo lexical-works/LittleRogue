@@ -17,8 +17,9 @@ cabal-version:       >=1.8
 executable LittleRogue
   hs-source-dirs:      src
   -- include-dirs:        src/
-  main-is:             src/Main.hs
+  main-is:             Main.hs
   other-modules:       GameMap Console
-  build-depends:       ansi-terminal  >= 0.5.0,
-                       containers >=  0.4.0.0,
-                       base  ==  4.6.*
+  build-depends:       ansi-terminal >= 0.5.0,
+                       containers >= 0.4.0.0,
+                       base == 4.6.*,
+                       random >= 1.0.0.0
