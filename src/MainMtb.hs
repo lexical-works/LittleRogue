@@ -5,7 +5,7 @@ import GameMap
 import Console
 
 genGameMap :: Int -> Int -> [(Int, Int)] -> GameCellMap
-genGameMap cols rows wallList = GameMap (fromList list) (cols, rows) (4, 4)
+genGameMap cols rows wallList = GameMap (fromList list) (cols, rows)
     where list = [makeCell (x, y) | x <- [0..(cols-1)], y <- [0..(rows-1)]]
           makeCellType p = if p `elem` wallList then Wall else Floor
           makeCell p = (p, makeCellType p)

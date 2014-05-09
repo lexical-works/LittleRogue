@@ -13,7 +13,7 @@ mul :: [a] -> [b] -> [(a, b)]
 mul xs ys = [(x, y) | x <- xs, y <- ys]
 
 gameMapToList :: GameCellMap -> [(Point, Maybe Cell)]
-gameMapToList gm@(GameMap md sz@(cols, rows) _) = map (\p -> (p, Data.Map.lookup p md)) $ mul [1..cols-1] [1..rows-1]
+gameMapToList gm@(GameMap md sz@(cols, rows)) = map (\p -> (p, Data.Map.lookup p md)) $ mul [1..cols-1] [1..rows-1]
 
 drawChar :: Char -> Point -> IO ()
 drawChar c (x, y) = do
@@ -26,11 +26,11 @@ drawCell (p, Nothing) = drawChar ' ' p
 
 drawGameCellMap :: GameCellMap -> IO ()
 drawGameCellMap gm = 
-    let GameMap m (cols, rows) _ = gm
+    let GameMap m (cols, rows) = gm
         x0 = drawStartX
         y0 = drawStartY
-        x1 = x0+cols+1
-        y1 = y0+rows+1
+        x1 = x0+cols
+        y1 = y0+rows
         drawBorder2 c p1 p2 = do drawChar c p1 ; drawChar c p2
     in do
         mapM_ (\x_ -> drawBorder2 '-' (x_, y0) (x_, y1)) [x0..x1]
